@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://calendar-grid-studio-2027.onrender.com/sitemap.xml
