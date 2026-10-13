@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: calendar-grid-studio-2027
+    runtime: static
+    buildCommand: npm run build
+    staticPublishPath: ./dist

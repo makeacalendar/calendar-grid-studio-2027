@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f1e8">
+    <title>Calendar Grid Studio — 2027 | Calendar Design & Date Validation</title>
+    <meta name="description" content="Design print-ready monthly calendars, validate Gregorian dates, compare week layouts, and export accurate CSV or JSON calendar data.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calendar Grid Studio — 2027">
+    <meta property="og:description" content="An interactive calendar design, date validation and print layout laboratory.">
+    <meta property="og:image" content="/social-preview.svg">
+    <meta name="color-scheme" content="light">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/src/styles.css">
+    <script type="module" src="/src/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to the calendar studio</a>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Calendar Grid Studio home">
+        <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+          <rect x="2" y="2" width="36" height="36" rx="8" fill="currentColor" />
+          <path d="M11 12h18M14 8v8m12-8v8M10 19h20M10 24h5m4 0h4m4 0h3M10 29h5m4 0h4m4 0h3" fill="none" stroke="#f4f1e8" stroke-linecap="round" stroke-width="1.7" />
+          <circle cx="25" cy="29" r="2" fill="#c47b55" />
+        </svg>
+        <span class="brand-copy"><strong>Calendar Grid</strong><small>Studio · 2027</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="#studio">Print studio</a>
+        <a href="#atlas">2027 atlas</a>
+        <a href="#validation">Validation lab</a>
+        <a href="#field-notes">Field notes</a>
+      </nav>
+      <a class="header-action" href="#studio">Open the studio <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main id="main">
+      <section class="hero section-shell" id="top" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-line"></span> A calendar production tool</p>
+          <h1 id="hero-title">Make every<br><em>date</em> fit.</h1>
+          <p class="hero-deck">A precise, hands-on laboratory for building printable calendar grids, checking date logic and preparing layouts for paper.</p>
+          <div class="hero-actions">
+            <a class="button button-dark" href="#studio">Design a calendar <span aria-hidden="true">↓</span></a>
+            <a class="text-link" href="#atlas">Browse the 2027 atlas <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="hero-footnote"><span class="status-dot"></span> Gregorian dates · 1900–2100 · works in your browser</div>
+        </div>
+        <div class="hero-art" aria-label="Illustration of a carefully typeset calendar grid">
+          <div class="hero-art-caption"><span>PLATE 01</span><span>JAN — DEC / 2027</span></div>
+          <div class="art-calendar" aria-hidden="true">
+            <div class="art-calendar-top"><span>JANUARY</span><span>2027</span></div>
+            <div class="art-weekdays"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div>
+            <div class="art-days"><i></i><i></i><i></i><i></i><i></i><i>1</i><i class="weekend">2</i><i class="weekend">3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i class="weekend">9</i><i class="weekend">10</i><i>11</i><i>12</i><i>13</i><i>14</i><i>15</i><i class="weekend">16</i><i class="weekend">17</i><i>18</i><i>19</i><i>20</i><i>21</i><i>22</i><i class="weekend">23</i><i class="weekend">24</i><i>25</i><i>26</i><i>27</i><i>28</i><i>29</i><i class="weekend">30</i><i class="weekend">31</i></div>
+          </div>
+          <div class="art-note"><span>01</span><p>Every grid begins with the weekday<br>that the first day actually falls on.</p></div>
+          <div class="art-coordinate">40° 43′ 55.3″ N<br>73° 59′ 11.2″ W</div>
+        </div>
+      </section>
+
+      <section class="studio-section section-shell" id="studio" aria-labelledby="studio-title">
+        <div class="section-heading">
+          <div><p class="eyebrow"><span class="eyebrow-line"></span> 01 / Print Studio</p><h2 id="studio-title">Build a month.<br><em>Make it yours.</em></h2></div>
+          <p class="section-intro">Set the calendar logic and the page together. The preview updates with every change; print or export the exact dates when it is ready.</p>
+        </div>
+        <div class="studio-layout">
+          <form class="control-panel" id="calendar-controls" aria-label="Calendar design settings" onsubmit="return false">
+            <div class="panel-topline"><span>DESIGN CONTROLS</span><button class="reset-button" id="reset-settings" type="button">Reset ↺</button></div>
+            <fieldset class="control-group">
+              <legend><span class="legend-number">01</span> Calendar</legend>
+              <div class="field-pair">
+                <label class="field-label" for="year-input">Year<input id="year-input" type="number" min="1900" max="2100" step="1" value="2027" inputmode="numeric"></label>
+                <label class="field-label" for="month-input">Month<select id="month-input"></select></label>
+              </div>
+              <label class="field-label" for="week-start">Week begins<select id="week-start"><option value="1">Monday</option><option value="0">Sunday</option></select></label>
+              <label class="check-row"><input id="fixed-rows" type="checkbox"><span class="check-visual" aria-hidden="true"></span><span><strong>Fixed six-row grid</strong><small>Reserve the same height for every month</small></span></label>
+            </fieldset>
+            <fieldset class="control-group">
+              <legend><span class="legend-number">02</span> Paper & layout</legend>
+              <div class="field-pair">
+                <label class="field-label" for="paper-size">Paper<select id="paper-size"><option value="a4">A4 · 210 × 297 mm</option><option value="letter">US Letter · 8.5 × 11 in</option></select></label>
+                <label class="field-label" for="orientation">Orientation<select id="orientation"><option value="portrait">Portrait</option><option value="landscape">Landscape</option></select></label>
+              </div>
+              <label class="field-label range-label" for="margin-size"><span>Page margin <output id="margin-output" for="margin-size">12 mm</output></span><input id="margin-size" type="range" min="5" max="25" value="12"></label>
+              <label class="check-row"><input id="show-guides" type="checkbox" checked><span class="check-visual" aria-hidden="true"></span><span><strong>Show safe-area guide</strong><small>Preview aid; guide is excluded from print</small></span></label>
+            </fieldset>
+            <fieldset class="control-group">
+              <legend><span class="legend-number">03</span> Type & detail</legend>
+              <label class="field-label" for="theme-select">Palette<select id="theme-select"><option value="midnight">Midnight · ink and teal</option><option value="botanical">Botanical · moss and cream</option><option value="copper">Copper · rust and sand</option><option value="mono">Monochrome · graphite</option></select></label>
+              <label class="field-label range-label" for="type-size"><span>Date numerals <output id="type-output" for="type-size">18 px</output></span><input id="type-size" type="range" min="12" max="30" value="18"></label>
+              <div class="field-pair">
+                <label class="field-label" for="cell-gap">Cell spacing<select id="cell-gap"><option value="0">Compact</option><option value="5" selected>Balanced</option><option value="10">Open</option></select></label>
+                <label class="field-label" for="grid-weight">Grid rule<select id="grid-weight"><option value="0">None</option><option value="1" selected>Fine</option><option value="2">Strong</option></select></label>
+              </div>
+              <label class="field-label" for="day-align">Date alignment<select id="day-align"><option value="start">Top left</option><option value="center">Centered</option></select></label>
+            </fieldset>
+            <fieldset class="control-group control-group-last">
+              <legend><span class="legend-number">04</span> Page text</legend>
+              <label class="field-label" for="header-text">Header<input id="header-text" type="text" value="Calendar Grid Studio" maxlength="48"></label>
+              <label class="check-row compact-check"><input id="include-header" type="checkbox" checked><span class="check-visual" aria-hidden="true"></span><span><strong>Print header</strong></span></label>
+              <label class="field-label" for="footer-text">Footer<input id="footer-text" type="text" value="Designed for the page · 2027" maxlength="64"></label>
+              <label class="check-row compact-check"><input id="include-footer" type="checkbox" checked><span class="check-visual" aria-hidden="true"></span><span><strong>Print footer</strong></span></label>
+              <label class="check-row"><input id="weekend-highlight" type="checkbox" checked><span class="check-visual" aria-hidden="true"></span><span><strong>Highlight weekends</strong><small>Subtle accent for Saturday and Sunday</small></span></label>
+            </fieldset>
+          </form>
+
+          <div class="preview-column">
+            <div class="preview-toolbar">
+              <div><span class="live-label"><span class="status-dot"></span> LIVE PROOF</span><p id="preview-meta">A4 · PORTRAIT · 5 ROWS</p></div>
+              <div class="preview-toolbar-actions"><button class="icon-button" type="button" id="previous-month" aria-label="Previous month">←</button><button class="icon-button" type="button" id="next-month" aria-label="Next month">→</button><button class="button button-small button-outline" type="button" id="print-calendar">Print / PDF <span aria-hidden="true">↗</span></button></div>
+            </div>
+            <div class="paper-stage" id="paper-stage">
+              <article class="paper theme-midnight" id="calendar-paper" aria-label="Generated monthly calendar">
+                <div class="safe-guide" aria-hidden="true"></div>
+                <div class="paper-content">
+                  <header class="paper-header" id="paper-header"><span id="paper-header-title">Calendar Grid Studio</span><span class="paper-header-year" id="paper-year">2027</span></header>
+                  <div class="paper-month-head"><p class="paper-month-label">MONTHLY CALENDAR</p><h3 id="paper-month-title">January <span>2027</span></h3><p class="paper-subtitle" id="paper-subtitle">A clear month, ready for the page.</p></div>
+                  <div class="calendar-grid" id="calendar-grid" role="grid" aria-label="January 2027 calendar"></div>
+                  <footer class="paper-footer" id="paper-footer"><span id="paper-footer-text">Designed for the page · 2027</span><span class="footer-mark">CGS <i>·</i> 01</span></footer>
+                </div>
+              </article>
+            </div>
+            <div class="proof-status" aria-live="polite"><span class="proof-check">✓</span><p id="overflow-status">All dates fit. Safe area is clear for print.</p><span class="proof-measure" id="proof-measure">A4 / 210 × 297 mm</span></div>
+            <div class="export-row">
+              <div><span class="eyebrow"><span class="eyebrow-line"></span> Take the calendar with you</span><p>Print one clean page or export date data for your own workflow.</p></div>
+              <div class="export-actions"><button type="button" class="button button-dark" id="export-csv">Download CSV <span aria-hidden="true">↓</span></button><button type="button" class="button button-outline" id="export-json">Download JSON <span aria-hidden="true">↓</span></button></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="atlas-section section-shell" id="atlas" aria-labelledby="atlas-title">
+        <div class="section-heading atlas-heading">
+          <div><p class="eyebrow"><span class="eyebrow-line"></span> 02 / The 2027 Atlas</p><h2 id="atlas-title">Twelve months.<br><em>One whole year.</em></h2></div>
+          <p class="section-intro">An at-a-glance year view, computed from the Gregorian rules. Choose a month to carry its dates straight into Print Studio.</p>
+        </div>
+        <div class="atlas-topline"><div class="atlas-year">2027 <span>ANNUAL INDEX</span></div><div class="atlas-key"><span><i class="key-weekend"></i> Weekend</span><span><i class="key-current"></i> Select a month</span></div></div>
+        <div class="atlas-grid" id="atlas-grid" aria-label="All months of 2027"></div>
+        <div class="comparison-strip">
+          <div class="comparison-copy"><p class="eyebrow"><span class="eyebrow-line"></span> Layout study</p><h3>Same month.<br><em>Different rhythm.</em></h3><p>Week start shifts the columns; fixed rows keep page height consistent. See how both choices change the grid.</p><label class="field-label comparison-month-label" for="comparison-month">Compare month<select id="comparison-month"></select></label></div>
+          <div class="comparison-view" id="comparison-view" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="validation-section section-shell" id="validation" aria-labelledby="validation-title">
+        <div class="section-heading">
+          <div><p class="eyebrow"><span class="eyebrow-line"></span> 03 / Validation Lab</p><h2 id="validation-title">Trust the date.<br><em>Check the math.</em></h2></div>
+          <p class="section-intro">A small verification desk for calendar details that layout software can get wrong. These calculations use Gregorian leap-year and ISO week rules.</p>
+        </div>
+        <div class="validation-layout">
+          <div class="validation-selector">
+            <div class="validation-selector-title"><span>MONTH INSPECTION</span><span class="lab-index">LAB / 01</span></div>
+            <div class="field-pair"><label class="field-label" for="lab-month">Month<select id="lab-month"></select></label><label class="field-label" for="lab-year">Year<input type="number" id="lab-year" min="1900" max="2100" value="2027"></label></div>
+            <div class="inspection-readout" id="inspection-readout"></div>
+            <div class="year-transition" id="year-transition"></div>
+          </div>
+          <div class="date-checker">
+            <div class="validation-selector-title"><span>DATE VERIFICATION</span><span class="lab-index">LAB / 02</span></div>
+            <p class="checker-intro">Enter any valid Gregorian date and compare the weekday and ISO week number.</p>
+            <form class="checker-form" id="date-check-form"><label class="field-label" for="date-check-input">Date to verify<input id="date-check-input" type="date" value="2027-01-01"></label><button class="button button-dark" type="submit">Check date <span aria-hidden="true">→</span></button></form>
+            <div class="date-result" id="date-result" aria-live="polite"></div>
+            <div class="error-note"><span class="note-symbol">!</span><p><strong>Watch the boundaries.</strong> A date in late December can belong to ISO week 1 of the next week-year. The calendar year printed beside a date and its ISO week-year are related, but not always identical.</p></div>
+          </div>
+        </div>
+        <div class="lab-principles"><div><span>01</span><p><strong>Leap-year test</strong>Divisible by 4, except centuries not divisible by 400.</p></div><div><span>02</span><p><strong>Weekday alignment</strong>Count the offset from the chosen first day; never shift a date to fill a row.</p></div><div><span>03</span><p><strong>ISO week-year</strong>Weeks run Monday to Sunday; week 1 contains the year's first Thursday.</p></div></div>
+      </section>
+
+      <section class="field-notes-section section-shell" id="field-notes" aria-labelledby="field-notes-title">
+        <div class="section-heading notes-heading">
+          <div><p class="eyebrow"><span class="eyebrow-line"></span> 04 / Field Notes</p><h2 id="field-notes-title">The page behind<br><em>the dates.</em></h2></div>
+          <p class="section-intro">A compact guide to building calendars that are both logically sound and comfortable to print and read.</p>
+        </div>
+        <div class="guide-layout">
+          <div class="guide-index"><span>REFERENCE</span><p>10 notes for calendar makers</p><span class="guide-index-mark">CGS<br>2027</span></div>
+          <div class="guide-list">
+            <details><summary><span>01</span><strong>How a printable calendar grid works</strong><i>+</i></summary><p>A month grid is an alignment of real dates into seven weekday columns. The first date's weekday determines the leading empty cells; the month length determines where the final row ends. Blank cells are layout space, not dates from a neighboring month.</p></details>
+            <details><summary><span>02</span><strong>Gregorian leap-year rules</strong><i>+</i></summary><p>A year is a leap year when divisible by 4, except a century year is not leap unless divisible by 400. This keeps the calendar aligned with the solar year over long intervals. For example, 2000 and 2400 are leap years; 1900 and 2100 are not.</p></details>
+            <details><summary><span>03</span><strong>Why some months need six rows</strong><i>+</i></summary><p>A Sunday-first or Monday-first grid needs six rows when the offset before day 1 plus the number of days in the month exceeds 35. February with a Saturday start in a leap year is one example; some 31-day months also need six rows.</p></details>
+            <details><summary><span>04</span><strong>ISO week numbers, in plain terms</strong><i>+</i></summary><p>ISO 8601 numbers weeks from Monday through Sunday. Week 1 is the week containing the year's first Thursday (equivalently, January 4). As a result, the ISO week-year can differ from the Gregorian year around New Year.</p></details>
+            <details><summary><span>05</span><strong>A4 and US Letter are different proportions</strong><i>+</i></summary><p>A4 is 210 × 297 mm, with a longer portrait proportion. US Letter is 8.5 × 11 inches (215.9 × 279.4 mm), slightly wider and shorter. Select the paper that matches the printer stock to avoid unexpected scaling.</p></details>
+            <details><summary><span>06</span><strong>Portrait and landscape layouts</strong><i>+</i></summary><p>Portrait lends a tall month view with room for notes below or beside the grid. Landscape gives more horizontal writing space and often larger day cells. The same date data can use either orientation.</p></details>
+            <details><summary><span>07</span><strong>Typography and date readability</strong><i>+</i></summary><p>Use clear numeral shapes, sufficient size and strong contrast. Keep weekday labels distinct from dates. A small amount of whitespace around numbers usually improves scanning more than heavier rules do.</p></details>
+            <details><summary><span>08</span><strong>Margins, scaling and printer limits</strong><i>+</i></summary><p>Most home printers cannot print to the very edge. Leave a safe margin and, in the browser print dialog, choose the same paper size as the design. “Fit to printable area” can shrink a page; “Actual size” preserves its intended dimensions when the printer supports them.</p></details>
+            <details><summary><span>09</span><strong>Common PDF layout mistakes</strong><i>+</i></summary><p>Typical problems include a paper-size mismatch, automatic headers and footers, browser scaling, clipped margins and background colors omitted by the print dialog. Review the print preview and turn off browser-added headers if they duplicate the calendar's own text.</p></details>
+            <details><summary><span>10</span><strong>Verify before you print</strong><i>+</i></summary><p>Check the first and last dates, count the days, confirm the weekday alignment and inspect any ISO week labels. Test a year transition and one leap-year February. Then compare the preview with the selected paper and orientation.</p></details>
+          </div>
+        </div>
+      </section>
+
+      <section class="resources-section section-shell" id="resources" aria-labelledby="resources-title">
+        <div class="resources-heading"><div><p class="eyebrow"><span class="eyebrow-line"></span> A related reading shelf</p><h2 id="resources-title">More ways to<br><em>plan the page.</em></h2></div><p>BetaCalendars offers printable date references and planning layouts alongside this independent calendar design tool.</p></div>
+        <div class="resource-list">
+          <a class="resource-link" href="https://www.betacalendars.com/" target="_blank" rel="noopener"><span class="resource-number">01</span><span class="resource-title">BetaCalendars</span><span class="resource-description">Printable calendar collections and date resources</span><span class="resource-arrow" aria-hidden="true">↗</span></a>
+          <a class="resource-link" href="https://www.betacalendars.com/monthly-calendar" target="_blank" rel="noopener"><span class="resource-number">02</span><span class="resource-title">Monthly calendars</span><span class="resource-description">Printable monthly calendar pages by month</span><span class="resource-arrow" aria-hidden="true">↗</span></a>
+          <a class="resource-link" href="https://www.betacalendars.com/blank-calendar" target="_blank" rel="noopener"><span class="resource-number">03</span><span class="resource-title">Blank calendars</span><span class="resource-description">Undated grids for flexible planning</span><span class="resource-arrow" aria-hidden="true">↗</span></a>
+          <a class="resource-link" href="https://www.betacalendars.com/weekly-calendar" target="_blank" rel="noopener"><span class="resource-number">04</span><span class="resource-title">Weekly calendars</span><span class="resource-description">A printable view organized one week at a time</span><span class="resource-arrow" aria-hidden="true">↗</span></a>
+          <a class="resource-link" href="https://www.betacalendars.com/monthly-planner" target="_blank" rel="noopener"><span class="resource-number">05</span><span class="resource-title">Monthly planners</span><span class="resource-description">Monthly planning pages and overview layouts</span><span class="resource-arrow" aria-hidden="true">↗</span></a>
+          <a class="resource-link" href="https://www.betacalendars.com/weekly-planner" target="_blank" rel="noopener"><span class="resource-number">06</span><span class="resource-title">Weekly planners</span><span class="resource-description">Printable planning pages for week-by-week notes</span><span class="resource-arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-main section-shell"><a class="brand footer-brand" href="#top"><svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="8" fill="currentColor"/><path d="M11 12h18M14 8v8m12-8v8M10 19h20M10 24h5m4 0h4m4 0h3M10 29h5m4 0h4m4 0h3" fill="none" stroke="#f4f1e8" stroke-linecap="round" stroke-width="1.7"/><circle cx="25" cy="29" r="2" fill="#c47b55"/></svg><span class="brand-copy"><strong>Calendar Grid</strong><small>Studio · 2027</small></span></a><p>A precise little space for making dates fit the page.</p><a class="footer-top" href="#top">Back to the top ↑</a></div>
+      <div class="footer-bottom section-shell"><span>CALENDAR GRID STUDIO · 2027</span><span>Gregorian date calculations · browser-side tool</span><span>Publisher resources: BetaCalendars</span></div>
+    </footer>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
